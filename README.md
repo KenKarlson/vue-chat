@@ -6,7 +6,7 @@ Vue2 + Node.js + WebSockets & Me
 
 # License: Look but don't touch & If it works, don't touch it!!!
 
-## Project setup
+## Project setup 📌
 
 ```
 npm install
@@ -14,7 +14,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 
-### To start the project, launch the server
+### To start the project, launch the server 🚀
 
 ```
 
