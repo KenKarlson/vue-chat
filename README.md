@@ -1,6 +1,6 @@
 # vue-chat
 
-# License: Look but don't touch
+# License: Look but don't touch & If it works, don't touch it!!!
 
 ## Project setup
 
