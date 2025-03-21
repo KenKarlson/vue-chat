@@ -1,19 +1,53 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderComponent />
+    <ChatComponent :messages="messages" />
+    <CreateComponent @send-message="handleSendMessage" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderComponent from './components/HeaderComponent.vue';
+import ChatComponent from './components/ChatComponent.vue';
+import CreateComponent from './components/CreateComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    HeaderComponent,
+    ChatComponent,
+    CreateComponent,
+  },
+  data() {
+    return {
+      messages: [],
+      ws: null,
+    };
+  },
+  created() {
+    // Подключение к WebSocket
+    this.ws = new WebSocket('ws://localhost:8080');
+
+    this.ws.onmessage = (event) => {
+      // Если данные пришли в формате Blob, преобразуем их в строку
+      if (event.data instanceof Blob) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.messages.push(reader.result);
+        };
+        reader.readAsText(event.data);
+      } else {
+        // Если данные уже в текстовом формате, просто добавляем их
+        this.messages.push(event.data);
+      }
+    };
+  },
+  methods: {
+    handleSendMessage(message) {
+      this.ws.send(message);
+    },
+  },
+};
 </script>
 
 <style>
