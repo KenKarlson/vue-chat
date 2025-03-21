@@ -22,11 +22,14 @@ export default {
 .chat {
   height: 300px;
   overflow-y: auto;
-  border: 1px solid #ccc;
-  padding: 10px;
   margin-bottom: 10px;
 }
+
 .message {
   margin-bottom: 5px;
+  padding: 5px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  word-wrap: break-word; /* Перенос длинных слов */
 }
 </style>
